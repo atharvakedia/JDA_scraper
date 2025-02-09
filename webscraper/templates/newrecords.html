@@ -1,0 +1,151 @@
+{% extends "layout.html" %}
+{% block style%}
+<style>
+    body,
+    html {
+        height: 100%;
+        margin: 0;
+    }
+
+    .navbar {
+        height: 20vh;
+    }
+
+    .content {
+        height: 80vh;
+    }
+
+    .center-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        min-height: 70vh;
+
+
+    }
+
+    .options-list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .options-list li {
+        margin: 10px 0;
+    }
+
+    @media only screen and (max-width:800px) {
+
+        #no-more-tables tbody,
+        #no-more-tables tr,
+        #no-more-tables td {
+            display: block;
+        }
+
+        #no-more-tables thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+        #no-more-tables td {
+            position: relative;
+            padding-left: 50%;
+            border: none;
+            border-bottom: 1px solid #eee;
+        }
+
+        #no-more-tables td:before {
+            content: attr(data-title);
+            position: absolute;
+            left: 6px;
+            font-weight: bold;
+        }
+
+        #no-more-tables tr {
+            border-bottom: 1px solid #ccc;
+        }
+    }
+</style>
+{% endblock style%}
+
+{% block content %}
+
+<body>
+    <section class="bg-light p-5">
+        {% if cnt_add!=0 %}
+        <h3 class="pb-2">New Records are listed below</h3>
+        <h4 class="pb-2">{{cnt_add}} new records were found</h4>
+        <div class="table-responsive" id="no-more-tables">
+            <table class="table bg-white">
+                <thead class="bg-dark text-light">
+                    <tr>
+                        <th>Scheme Id</th>
+                        <th>Sector Id</th>
+                        <th>Name</th>
+                        <th>Zone</th>
+                        <th>Developer</th>
+                        <th>Status</th>
+                        <th>Plots</th>
+                        <th>Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in to_add %}
+                    {% x = db.session.query(Scheme).filter(Scheme.sch_id == item[0], Scheme.sector_id ==
+                    item[1]).first() %}
+                    <tr>
+                        <td data-title="SchemeId">{{scheme.sch_id}}</td>
+                        <td data-title="SectorId">{{scheme.sector_id}}</td>
+                        <td data-title="Name">{{scheme.name}}</td>
+                        <td data-title="Zone">{{scheme.zone}}</td>
+                        <td data-title="Developer">{{scheme.developer}}</td>
+                        <td data-title="Status">{{scheme.status}}</td>
+                        <td data-title="Plots">{{scheme.plots}}</td>
+                        <td data-title="LastUpdated">{{scheme.last_updated}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% elif cnt_update!=0 %}
+        <h3 class="pb-2">Updated Records are listed below</h3>
+        <h4 class="pb-2"></h4>
+        <div class="alert alert-info">{cnt_update}} records were updated</div>
+        <div class="table-responsive" id="no-more-tables">
+            <table class="table bg-white">
+                <thead class="bg-dark text-light">
+                    <tr>
+                        <th>Scheme Id</th>
+                        <th>Sector Id</th>
+                        <th>Name</th>
+                        <th>Zone</th>
+                        <th>Developer</th>
+                        <th>Status</th>
+                        <th>Plots</th>
+                        <th>Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for scheme in to_update %}
+                    <tr>
+                        <td data-title="SchemeId">{{scheme.sch_id}}</td>
+                        <td data-title="SectorId">{{scheme.sector_id}}</td>
+                        <td data-title="Name">{{scheme.name}}</td>
+                        <td data-title="Zone">{{scheme.zone}}</td>
+                        <td data-title="Developer">{{scheme.developer}}</td>
+                        <td data-title="Status">{{scheme.status}}</td>
+                        <td data-title="Plots">{{scheme.plots}}</td>
+                        <td data-title="LastUpdated">{{scheme.last_updated}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-danger">There are no new records or updates</div>
+        {% endif %}
+    </section>
+</body>
+{% endblock content %}

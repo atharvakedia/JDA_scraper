@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block style%}
+<style>
+    body,
+    html {
+        height: 100%;
+        margin: 0;
+    }
+
+    .navbar {
+        height: 20vh;
+        /* Adjust this height as needed */
+    }
+
+    .content {
+        height: 80vh;
+    }
+
+    .center-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        min-height: 70vh;
+        /* Subtract the height of the navbar */
+    }
+
+    .options-list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .options-list li {
+        margin: 10px 0;
+    }
+</style>
+{% endblock style %}
+
+
+{% block content %}
+<div class="container-fluid content">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-12 center-content">
+            <h2>Kindly choose from the options below</h2>
+            <ul class="options-list">
+                <li><a href="#" class="btn btn-secondary">Option 1</a></li>
+                <li><a href="#" class="btn btn-secondary">Option 2</a></li>
+                <li><a href="#" class="btn btn-secondary">Option 3</a></li>
+                <li><a href="#" class="btn btn-secondary">Option 4</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock content %}

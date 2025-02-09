@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block style%}
+<style>
+    body,
+    html {
+        height: 100%;
+        margin: 0;
+    }
+
+    .navbar {
+        height: 20vh;
+        /* Adjust this height as needed */
+    }
+
+    .content {
+        height: 80vh;
+    }
+
+    .center-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        min-height: 70vh;
+        /* Subtract the height of the navbar */
+    }
+
+    .options-list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .options-list li {
+        margin: 10px 0;
+    }
+</style>
+{% endblock style%}
+{% block content %}
+<div class="row justify-content-center align-items-center full-height">
+    <div class="col-12 center-content">
+        <h1>Welcome to Kedia Group JDA DB</h1>
+        <button class="btn btn-primary mt-3" onclick="location.href='{{ url_for('menu') }}'">Click to continue</button>
+    </div>
+</div>
+{% endblock content %}

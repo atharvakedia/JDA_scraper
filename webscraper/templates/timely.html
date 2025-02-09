@@ -1,0 +1,42 @@
+<!-- templates/timely.html -->
+{% extends "base.html" %}
+{% block content %}
+<h2>Timely Query</h2>
+{% if schemes %}
+<h4>Schemes updated after {{ time_str }}</h4>
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th>Scheme ID</th>
+            <th>Sector ID</th>
+            <th>Name</th>
+            <th>Developer</th>
+            <th>Status</th>
+            <th>Plots</th>
+            <th>Last Updated</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for scheme in schemes %}
+        <tr>
+            <td>{{ scheme.sch_id }}</td>
+            <td>{{ scheme.sector_id }}</td>
+            <td>{{ scheme.name }}</td>
+            <td>{{ scheme.developer }}</td>
+            <td>{{ scheme.status }}</td>
+            <td>{{ scheme.plots }}</td>
+            <td>{{ scheme.last_updated }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<form method="post">
+    <div class="form-group">
+        <label for="time">Enter time (YYYY-MM-DD HH:MM:SS):</label>
+        <input type="text" class="form-control" name="time" id="time" placeholder="2025-01-01 00:00:00">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endif %}
+{% endblock %}

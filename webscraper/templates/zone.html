@@ -1,0 +1,31 @@
+<!-- templates/zone.html -->
+{% extends "base.html" %}
+{% block content %}
+<h2>Schemes in Zone {{ zone_id }}</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Scheme ID</th>
+            <th>Sector ID</th>
+            <th>Name</th>
+            <th>Developer</th>
+            <th>Status</th>
+            <th>Plots</th>
+            <th>Last Updated</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for scheme in schemes %}
+        <tr>
+            <td>{{ scheme.sch_id }}</td>
+            <td>{{ scheme.sector_id }}</td>
+            <td>{{ scheme.name }}</td>
+            <td>{{ scheme.developer }}</td>
+            <td>{{ scheme.status }}</td>
+            <td>{{ scheme.plots }}</td>
+            <td>{{ scheme.last_updated }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

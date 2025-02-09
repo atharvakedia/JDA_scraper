@@ -1,0 +1,23 @@
+<!-- templates/custom_query.html -->
+{% extends "base.html" %}
+{% block content %}
+<h2>Custom Query</h2>
+<form method="post">
+  <div class="form-group">
+    <label for="query">Enter SQL query:</label>
+    <textarea class="form-control" name="query" id="query" rows="4">{{ query }}</textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Run Query</button>
+</form>
+
+{% if error %}
+<div class="alert alert-danger mt-3">
+  <strong>Error:</strong> {{ error }}
+</div>
+{% endif %}
+
+{% if results %}
+<h3 class="mt-3">Results:</h3>
+<pre>{{ results }}</pre>
+{% endif %}
+{% endblock %}

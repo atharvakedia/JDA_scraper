@@ -1,0 +1,25 @@
+<!-- templates/zones.html -->
+{% extends "base.html" %}
+{% block content %}
+<h2>Zones</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Schemes Count</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for zone in zones %}
+        <tr>
+            <td>{{ zone.id }}</td>
+            <td>{{ zone.name }}</td>
+            <td>{{ zone.schemes_cnt }}</td>
+            <td><a href="{{ url_for('zone', zone_id=zone.id) }}">View Schemes</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
