@@ -1,4 +1,3 @@
-# models.py
 from webscraper import db
 from datetime import datetime
 
@@ -6,8 +5,6 @@ class Zone(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
     schemes_cnt = db.Column(db.Integer)
-    # Relationship: Each Zone has many Scheme objects.
-    # The backref 'zone' allows each Scheme instance to access its related Zone as scheme.zone.
     schemes = db.relationship('Scheme', backref='zone', lazy=True)
 
     def __repr__(self):
@@ -15,11 +12,9 @@ class Zone(db.Model):
 
 
 class Scheme(db.Model):
-    # Composite primary key: sch_id and sector_id.
     sch_id = db.Column(db.Integer, primary_key=True)
     sector_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
-    # Renamed from 'zone' to 'zone_name' to store the zone name (string) and avoid conflict with the relationship.
     zone_name = db.Column(db.String(50))
     zone_id = db.Column(db.Integer, db.ForeignKey('zone.id'))
     developer = db.Column(db.String(100))

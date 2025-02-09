@@ -12,7 +12,7 @@ def index():
 @app.route('/update')
 def update():
     messages = []
-    # List of zone IDs to process
+
     zone_ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 18, 20, 27, 28]
     
     for i in zone_ids:
